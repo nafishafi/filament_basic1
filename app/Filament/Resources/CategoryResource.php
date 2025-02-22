@@ -24,7 +24,8 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\Toggle::make('is_expense')
                     ->required(),
                 Forms\Components\FileUpload::make('image')
@@ -41,6 +42,11 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_expense')
+                    ->label('Tipe')
+                    ->trueIcon('heroicon-s-arrow-up-circle')
+                    ->falseIcon('heroicon-s-arrow-down-circle')
+                    ->trueColor('danger')
+                    ->falseColor('success')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
